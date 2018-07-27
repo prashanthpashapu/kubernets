@@ -1,0 +1,27 @@
+apiversion: apps/v1
+kind: Deployment
+metadata: 
+  name: myfirstdeploy
+spec:
+  replicas: 2
+  minreadyseconds: 2
+  strategy:
+    type: rollingupdate
+    rollingupdate: 
+      maxunavilable: 1
+      maxsurge: 1
+  selector: 
+    matchlables: 
+      myproject: app
+      version: 1.0
+  template:
+    metadata:
+      lables:
+        version: 1.0
+    spec:
+      containers:
+      - name: web
+        image: nginx
+        #image: httpd
+        ports:
+        - containerPort: 80

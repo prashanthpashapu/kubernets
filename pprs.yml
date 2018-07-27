@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myfirstrepica 
+spec:
+  replicas: 2
+  selector:
+    matchlables:
+      myproject: app
+      version: 0.1
+  template:
+    metadata:
+      lables:
+        myproject: app
+    spec: 
+      containers:
+      - name: htttt
+        image: httpd
+        ports: 
+        - containerPort: 80
+        
